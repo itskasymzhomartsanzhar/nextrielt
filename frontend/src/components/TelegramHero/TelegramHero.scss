@@ -1,0 +1,308 @@
+$bg-text: #34363b;
+$text-dark: #31343a;
+$text-body: #3e4147;
+$text-mid: #373a40;
+$text-strong: #2f3238;
+$accent-blue: #0468FF;
+$accent-green: #0468FF;
+$cta-green: #0468FF;
+$cta-green-hover: #0468FF;
+$border-soft: #c8cbd0;
+
+.telegram-hero {
+  padding: 90px 0 50px;
+
+  &__inner {
+    width: min(1540px, 100%);
+    margin: 0 auto;
+    padding: 0 clamp(16px, 6vw, 100px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 48px;
+  }
+
+  &__content {
+    max-width: 900px;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+}
+
+.hero-heading {
+  &__title {
+    margin: 0;
+    color: $bg-text;
+    font-size: 50px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.03;
+  }
+
+  &__line {
+    display: block;
+  }
+
+  &__telegram {
+    display: inline-flex;
+    align-items: center;
+    color: $accent-blue;
+    gap: 12px;
+  }
+
+  &__telegram-icon {
+    width: 45px;
+    height: 45px;
+    display: inline-flex;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  &__accent {
+    color: $accent-green;
+  }
+
+  &__lead {
+    margin: 44px 0 0;
+    max-width: 880px;
+    color: $text-body;
+    font-size: 18px;
+    line-height: 1.45;
+
+    strong {
+      color: $text-dark;
+      font-weight: 700;
+    }
+  }
+}
+
+.hero-benefits {
+  margin: 54px 0 0;
+  list-style: none;
+  max-width: 550px;
+  padding: 0;
+  display: grid;
+  gap: 28px;
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  &__icon {
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+    margin-top: 2px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+
+  &__text {
+    color: $text-mid;
+    font-size: 18px;
+    line-height: 1.34;
+
+    strong {
+      font-weight: 700;
+      color: $text-strong;
+    }
+  }
+}
+
+.hero-actions {
+  margin-top: 56px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+
+  &__button {
+    border-radius: 999px;
+    border: 2px solid transparent;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 24px 36px;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 650;
+    transition: all 0.2s ease;
+
+    &--primary {
+      background: $cta-green;
+      color: #fff;
+
+      &:hover,
+      &:focus-visible {
+        background: $cta-green-hover;
+        transform: translateY(-2px);
+      }
+    }
+
+    &--secondary {
+      background: transparent;
+      border-color: $border-soft;
+      color: $bg-text;
+
+      &:hover,
+      &:focus-visible {
+        background: #ffffff8f;
+        transform: translateY(-2px);
+      }
+    }
+  }
+
+  &__icon {
+    width: clamp(20px, 1.4vw, 28px);
+    height: clamp(20px, 1.4vw, 28px);
+    display: inline-block;
+    object-fit: contain;
+  }
+}
+
+.hero-visual {
+  flex: 0 1 620px;
+  min-width: 0;
+  margin-top: -28px;
+  display: flex;
+  justify-content: center;
+
+  &__image {
+    width: 100%;
+    max-width: 450px;
+    height: auto;
+    display: block;
+    user-select: none;
+    pointer-events: none;
+  }
+}
+
+@media (max-width: 1420px) {
+  .telegram-hero__inner {
+    gap: 28px;
+  }
+}
+
+@media (max-width: 1140px) {
+  .telegram-hero {
+    padding: 56px 0 48px;
+
+    &__inner {
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    &__content {
+      max-width: 100%;
+      padding-top: 0;
+    }
+  }
+
+  .hero-heading__title {
+    font-size: clamp(48px, 9vw, 72px);
+  }
+
+  .hero-heading__lead br {
+    display: none;
+  }
+
+  .hero-visual {
+    min-width: 0;
+    width: 100%;
+    margin-top: 0;
+    justify-content: center;
+
+    &__image {
+      width: min(540px, 100%);
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  .telegram-hero {
+    padding: 38px 0 30px;
+
+    &__inner {
+      padding: 0 16px;
+    }
+  }
+
+  .hero-heading__title {
+    font-size: clamp(34px, 8vw, 46px);
+  }
+
+  .hero-heading__lead {
+    margin-top: 24px;
+    font-size: 18px;
+  }
+
+  .hero-benefits {
+    margin-top: 32px;
+    gap: 20px;
+
+    &__text {
+      font-size: 18px;
+    }
+  }
+
+  .hero-actions {
+    margin-top: 34px;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+
+    &__button {
+      min-width: 0;
+      width: 100%;
+      padding: 16px 20px;
+      font-size: 18px;
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  .hero-heading__title {
+    font-size: 32px;
+    line-height: 1.1;
+  }
+
+  .hero-heading__telegram-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .hero-heading__lead,
+  .hero-benefits__text {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 425px) {
+  .hero-actions__button {
+    font-size: 16px;
+  }
+
+  .hero-visual {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .hero-visual__image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 3 / 4;
+    object-fit: contain;
+  }
+}

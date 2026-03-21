@@ -1,0 +1,250 @@
+$title-dark: #34363b;
+$title-accent: #0468ff;
+$text-secondary: #7a7f87;
+$card-bg: #f5f7fb;
+$input-bg: #ffffff;
+$border: #e2e6ee;
+$accent: #0468ff;
+
+.tariffs {
+  padding: 90px 0 110px;
+
+  &__inner {
+    width: min(1540px, 100%);
+    margin: 0 auto;
+    padding: 0 clamp(16px, 6vw, 100px);
+    display: grid;
+    gap: 36px;
+  }
+
+  &__header {
+    text-align: center;
+    display: grid;
+    gap: 12px;
+    justify-items: center;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 50px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: $title-dark;
+
+    span {
+      color: $title-accent;
+      font-weight: 700;
+    }
+  }
+
+  &__subtitle {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 400;
+
+    color: #383838;
+
+    strong {
+      color: $title-dark;
+      font-weight: 600;
+    }
+  }
+
+  &__calculator {
+    background: $card-bg;
+    border-radius: 15px;
+    padding: 25px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+    max-width: 780px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  &__fields {
+    display: grid;
+    gap: 18px;
+  }
+
+  &__field {
+    display: grid;
+    gap: 10px;
+  }
+
+  &__label {
+    font-size: 16px;
+    color: $title-dark;
+    font-weight: 500;
+  }
+
+  &__input {
+    border: 1px solid $border;
+    background: $input-bg;
+    padding: 16px 20px;
+    border-radius: 999px;
+    font-size: 18px;
+    color: $title-dark;
+    outline: none;
+  }
+
+  &__result {
+    background: linear-gradient(135deg, #3063f7 0%, #3063f7 100%);
+    color: #fff;
+    border-radius: 15px;
+    padding: 25px;
+    display: grid;
+    gap: 18px;
+  }
+
+  &__result-title {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  &__result-list {
+    display: grid;
+    gap: 12px;
+    font-size: 16px;
+  }
+
+  &__result-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__result-button {
+    margin-top: 6px;
+    background: #fff;
+    color: $title-dark;
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 12px 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-weight: 600;
+    width: 100%;
+  }
+
+  &__result-icon {
+    display: inline-flex;
+    color: $accent;
+  }
+
+  &__plans {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+.tariff-card {
+  border: 1px solid $border;
+  border-radius: 15px;
+  padding: 25px;
+  background: #fff;
+  display: grid;
+  gap: 25px;
+
+  &__header {
+    display: grid;
+    gap: 6px;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 24px;
+    color: $title-dark;
+  }
+
+  &__meta {
+    margin: 0;
+    color: $text-secondary;
+    font-size: 18px;
+  }
+
+  &__meta-main {
+    color: #383838;
+  }
+
+  &__meta-sub {
+    color: $text-secondary;
+  }
+
+  &__price {
+    font-size: 24px;
+    font-weight: 700;
+    color: $title-dark;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  &__item {
+    display: flex;
+    gap: 10px;
+    font-size: 18px;
+    align-items: center;
+    color: $title-dark;
+  }
+
+  &__check {
+    color: $accent;
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 1100px) {
+  .tariffs__calculator {
+    grid-template-columns: 1fr;
+  }
+
+  .tariffs__result {
+    order: 1;
+  }
+
+  .tariffs__plans {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .tariffs {
+    padding: 70px 0 80px;
+  }
+
+  .tariffs__title {
+    font-size: 34px;
+  }
+
+  .tariffs__calculator {
+    padding: 22px;
+  }
+
+  .tariffs__plans {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .tariffs__title {
+    font-size: 30px;
+  }
+
+  .tariffs__input {
+    font-size: 16px;
+  }
+}

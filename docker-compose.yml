@@ -1,0 +1,27 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    env_file:
+      - ./backend/.env
+    environment:
+      DJANGO_DEBUG: "0"
+      DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1,0.0.0.0"
+      DJANGO_DB_PATH: "/data/db.sqlite3"
+    volumes:
+      - db_data:/data
+      - static_data:/app/staticfiles
+    ports:
+      - "8130:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+    depends_on:
+      - backend
+    ports:
+      - "3130:80"
+
+volumes:
+  db_data:
+  static_data:
