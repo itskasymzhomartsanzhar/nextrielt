@@ -105,9 +105,10 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
-STATICFILES_DIRS = [
-    BASE_DIR.parent / 'frontend' / 'dist' / 'assets',
-]
+STATICFILES_DIRS = []
+frontend_assets_dir = BASE_DIR.parent / 'frontend' / 'dist' / 'assets'
+if frontend_assets_dir.exists():
+    STATICFILES_DIRS.append(frontend_assets_dir)
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
@@ -121,8 +122,8 @@ REST_FRAMEWORK = {
     ],
 }
 
-CORS_ALLOW_ALL_ORIGINS = DEBUG
-if not DEBUG:
+CORS_ALLOW_ALL_ORIGINS = bool(DEBUG)
+if not CORS_ALLOW_ALL_ORIGINS:
     CORS_ALLOWED_ORIGINS = [
         origin.strip()
         for origin in os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
