@@ -5,9 +5,13 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-7kwc^w!=!&)^@jjohhlf+aqbz+h2l4++c!&#8pby^r8=+-zb$4'
+SECRET_KEY = os.environ.get(
+    'DJANGO_SECRET_KEY',
+    'django-insecure-unsafe-dev-key',
+)
 
-DEBUG = 1
+DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
+
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend', 'nextrielt.tw1.su']
 
@@ -64,7 +68,7 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.environ.get('DJANGO_DB_PATH', str(BASE_DIR / 'db.sqlite3')),
     }
 }
 
@@ -106,7 +110,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_DIRS = []
-frontend_assets_dir = BASE_DIR.parent / 'frontend' / 'dist' / 'assets'
+frontend_dist_dir = BASE_DIR / 'frontend' / 'dist'
+frontend_assets_dir = frontend_dist_dir / 'assets'
+if frontend_dist_dir.exists():
+    TEMPLATES[0]['DIRS'] = [frontend_dist_dir]
 if frontend_assets_dir.exists():
     STATICFILES_DIRS.append(frontend_assets_dir)
 
@@ -138,7 +145,7 @@ TELEGRAM_CHAT_ID = os.environ.get('TELEGRAM_CHAT_ID', '')
 # OpenAI chat settings
 from api.prompts import CHAT_SYSTEM_PROMPT
 
-OPENAI_API_KEY = "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"
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
 OPENAI_API_URL = os.environ.get('OPENAI_API_URL', 'https://api.openai.com/v1/responses')
 OPENAI_MODEL = os.environ.get('OPENAI_MODEL', 'gpt-4.1-mini')
 OPENAI_SYSTEM_PROMPT = os.environ.get('OPENAI_SYSTEM_PROMPT', CHAT_SYSTEM_PROMPT)
