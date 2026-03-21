@@ -13,7 +13,9 @@ SECRET_KEY = os.environ.get(
 DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend', 'nextrielt.tw1.su']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend', 'estate.swiftagents.ru']
+CORS_ALLOWED_ORIGINS=['https://estate.swiftagents.ru']
+DJANGO_CSRF_TRUSTED_ORIGINS=['https://estate.swiftagents.ru']
 
 
 # Application definition
@@ -136,6 +138,12 @@ if not CORS_ALLOW_ALL_ORIGINS:
         for origin in os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
         if origin.strip()
     ]
+
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').split(',')
+    if origin.strip()
+]
 
 # Telegram notifications
 TELEGRAM_NOTIFY_ENABLED = os.environ.get('TELEGRAM_NOTIFY_ENABLED', '0') == '1'

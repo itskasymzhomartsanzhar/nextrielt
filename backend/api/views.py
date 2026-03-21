@@ -2,7 +2,10 @@ import logging
 from rest_framework import generics, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.permissions import AllowAny
 from django.conf import settings
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 from .models import Faq
 from .serializers import FaqSerializer, LeadCreateSerializer, ChatRequestSerializer
 from .services import build_lead_message, send_telegram_message, send_openai_chat, send_openrouter_chat
@@ -23,7 +26,11 @@ class FaqListView(generics.ListAPIView):
         return Faq.objects.filter(is_active=True).order_by('order', 'id')
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class LeadCreateView(APIView):
+    authentication_classes = []
+    permission_classes = [AllowAny]
+
     def post(self, request):
         serializer = LeadCreateSerializer(
             data=request.data,
@@ -44,7 +51,11 @@ class LeadCreateView(APIView):
         )
 
 
+@method_decorator(csrf_exempt, name='dispatch')
 class ChatView(APIView):
+    authentication_classes = []
+    permission_classes = [AllowAny]
+
     def post(self, request):
         serializer = ChatRequestSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
