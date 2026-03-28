@@ -13,9 +13,12 @@ SECRET_KEY = os.environ.get(
 DEBUG = os.environ.get('DJANGO_DEBUG', '0') == '1'
 
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'backend', 'estate.swiftagents.ru']
-CORS_ALLOWED_ORIGINS=['https://estate.swiftagents.ru']
-DJANGO_CSRF_TRUSTED_ORIGINS=['https://estate.swiftagents.ru']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '0.0.0.0', 'backend', 'estate.swiftagents.ru']
+
+# If Django runs behind reverse proxy/ingress with TLS termination, trust
+# X-Forwarded-* headers to keep CSRF origin checks consistent.
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+USE_X_FORWARDED_HOST = True
 
 
 # Application definition
@@ -134,15 +137,21 @@ REST_FRAMEWORK = {
 CORS_ALLOW_ALL_ORIGINS = bool(DEBUG)
 if not CORS_ALLOW_ALL_ORIGINS:
     CORS_ALLOWED_ORIGINS = [
-        origin.strip()
-        for origin in os.environ.get('CORS_ALLOWED_ORIGINS', '').split(',')
-        if origin.strip()
+        'https://estate.swiftagents.ru',
+        'http://localhost:5173',
+        'http://127.0.0.1:5173',
+        'http://localhost:3130',
+        'http://127.0.0.1:3130',
     ]
 
 CSRF_TRUSTED_ORIGINS = [
-    origin.strip()
-    for origin in os.environ.get('DJANGO_CSRF_TRUSTED_ORIGINS', '').split(',')
-    if origin.strip()
+    'https://estate.swiftagents.ru',
+    'http://localhost:5173',
+    'http://127.0.0.1:5173',
+    'http://localhost:3130',
+    'http://127.0.0.1:3130',
+    'http://localhost:8000',
+    'http://127.0.0.1:8000',
 ]
 
 # Telegram notifications
