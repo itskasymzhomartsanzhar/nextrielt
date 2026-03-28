@@ -9,14 +9,7 @@ import photo3 from '../../assets/photo3.png'
 import './TryNow.scss'
 
 export default function TryNow() {
-  const [messages, setMessages] = useState([
-    { id: 'm1', type: 'out', text: 'Добрый день! Интересует аренда' },
-    {
-      id: 'm2',
-      type: 'in',
-      text: 'Добрый день! Меня зовут Александра, я помогу вам с арендой.',
-    },
-  ])
+  const [messages, setMessages] = useState([])
   const [messageText, setMessageText] = useState('')
   const [isSending, setIsSending] = useState(false)
   const apiBase = import.meta.env.DEV ? '' : import.meta.env.VITE_API_BASE_URL || ''
