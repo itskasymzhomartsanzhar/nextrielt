@@ -165,7 +165,7 @@ from api.prompts import CHAT_SYSTEM_PROMPT
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
 OPENAI_API_URL = os.environ.get('OPENAI_API_URL', 'https://api.openai.com/v1/responses')
 OPENAI_MODEL = 'gpt-4.1-mini'
-OPENAI_SYSTEM_PROMPT = os.environ.get('OPENAI_SYSTEM_PROMPT', CHAT_SYSTEM_PROMPT)
+OPENAI_SYSTEM_PROMPT =  CHAT_SYSTEM_PROMPT
 OPENAI_MAX_OUTPUT_TOKENS = int(os.environ.get('OPENAI_MAX_OUTPUT_TOKENS', '300'))
 OPENAI_TEMPERATURE = float(os.environ.get('OPENAI_TEMPERATURE', '0.6'))
 OPENAI_TIMEOUT_SECONDS = int(os.environ.get('OPENAI_TIMEOUT_SECONDS', '15'))
