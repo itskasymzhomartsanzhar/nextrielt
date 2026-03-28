@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import chatPattern from '../../assets/background.png'
 import avatar from '../../assets/avatar.png'
 import rentIcon from '../../assets/renticon.png'
@@ -12,9 +12,31 @@ export default function TryNow() {
   const [messages, setMessages] = useState([])
   const [messageText, setMessageText] = useState('')
   const [isSending, setIsSending] = useState(false)
+  const [chatHeight, setChatHeight] = useState(null)
+  const tryCardRef = useRef(null)
   const apiBase = import.meta.env.DEV ? '' : import.meta.env.VITE_API_BASE_URL || ''
   const endpoint = apiBase ? `${apiBase}/api/chat/` : '/api/chat/'
   const maxContext = 12
+
+  useEffect(() => {
+    const card = tryCardRef.current
+    if (!card) return
+
+    const updateHeight = () => {
+      const isDesktop = window.matchMedia('(min-width: 1101px)').matches
+      setChatHeight(isDesktop ? card.offsetHeight : null)
+    }
+
+    updateHeight()
+    const observer = new ResizeObserver(updateHeight)
+    observer.observe(card)
+    window.addEventListener('resize', updateHeight)
+
+    return () => {
+      observer.disconnect()
+      window.removeEventListener('resize', updateHeight)
+    }
+  }, [])
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -89,7 +111,13 @@ export default function TryNow() {
         </header>
 
         <div className="try-now__content">
-          <div className="try-chat" style={{ '--chat-bg': `url(${chatPattern})` }}>
+          <div
+            className="try-chat"
+            style={{
+              '--chat-bg': `url(${chatPattern})`,
+              ...(chatHeight ? { '--chat-height': `${chatHeight}px` } : {}),
+            }}
+          >
             <div className="try-chat__header">
               <img className="try-chat__avatar" src={avatar} alt="" />
               <div className="try-chat__meta">
@@ -137,7 +165,7 @@ export default function TryNow() {
             </form>
           </div>
 
-          <article className="try-card">
+          <article className="try-card" ref={tryCardRef}>
             <h3 className="try-card__title">Сдаются 1-комн. апартаменты, 45 м²</h3>
             <div className="try-card__location">
               <span className="try-card__pin" aria-hidden="true">
