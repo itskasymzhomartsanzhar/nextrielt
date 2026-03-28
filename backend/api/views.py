@@ -63,10 +63,8 @@ class ChatView(APIView):
         if not any(message['role'] == 'user' for message in messages):
             return Response({'error': 'No user message provided.'}, status=status.HTTP_400_BAD_REQUEST)
 
-        if settings.LLM_PROVIDER == 'openrouter':
-            reply, error = send_openrouter_chat(messages, settings.OPENAI_SYSTEM_PROMPT)
-        else:
-            reply, error = send_openai_chat(messages, settings.OPENAI_SYSTEM_PROMPT)
+        reply, error = send_openrouter_chat(messages, settings.OPENAI_SYSTEM_PROMPT)
+
         if error == 'missing_api_key':
             return Response({'error': 'API key is not configured.'}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
         if error:

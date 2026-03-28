@@ -172,7 +172,7 @@ OPENAI_TIMEOUT_SECONDS = int(os.environ.get('OPENAI_TIMEOUT_SECONDS', '15'))
 OPENAI_MAX_HISTORY = int(os.environ.get('OPENAI_MAX_HISTORY', '12'))
 
 # LLM provider selection
-LLM_PROVIDER = os.environ.get('LLM_PROVIDER', 'openrouter')
+LLM_PROVIDER = "openrouter"
 
 # OpenRouter settings
 OPENROUTER_API_KEY = "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"
