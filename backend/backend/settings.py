@@ -175,7 +175,7 @@ OPENAI_MAX_HISTORY = int(os.environ.get('OPENAI_MAX_HISTORY', '12'))
 LLM_PROVIDER = "openrouter"
 
 # OpenRouter settings
-OPENROUTER_API_KEY = "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"
+OPENROUTER_API_KEY = "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"
 OPENROUTER_API_URL = os.environ.get('OPENROUTER_API_URL', 'https://openrouter.ai/api/v1/chat/completions')
 OPENROUTER_MODEL = os.environ.get('OPENROUTER_MODEL', 'openai/gpt-4.1-mini')
 OPENROUTER_SITE_URL = os.environ.get('OPENROUTER_SITE_URL', '')
