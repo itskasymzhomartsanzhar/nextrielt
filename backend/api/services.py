@@ -240,6 +240,8 @@ def send_openrouter_chat(messages, system_prompt):
         except Exception:
             error_body = ''
         logger.exception('OpenRouter API error: %s', error_body)
+        if error.code in (401, 403):
+            return None, 'invalid_api_key'
         return None, 'openrouter_error'
     except urllib.error.URLError as error:
         if (

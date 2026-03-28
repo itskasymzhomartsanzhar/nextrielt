@@ -67,6 +67,8 @@ class ChatView(APIView):
 
         if error == 'missing_api_key':
             return Response({'error': 'API key is not configured.'}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+        if error == 'invalid_api_key':
+            return Response({'error': 'API key is invalid.'}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
         if error:
             return Response({'error': 'Failed to generate response.'}, status=status.HTTP_502_BAD_GATEWAY)
         return Response({'reply': reply}, status=status.HTTP_200_OK)
