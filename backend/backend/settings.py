@@ -164,7 +164,7 @@ from api.prompts import CHAT_SYSTEM_PROMPT
 
 OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
 OPENAI_API_URL = os.environ.get('OPENAI_API_URL', 'https://api.openai.com/v1/responses')
-OPENAI_MODEL = os.environ.get('OPENAI_MODEL', 'gpt-4.1-mini')
+OPENAI_MODEL = 'gpt-4.1-mini'
 OPENAI_SYSTEM_PROMPT = os.environ.get('OPENAI_SYSTEM_PROMPT', CHAT_SYSTEM_PROMPT)
 OPENAI_MAX_OUTPUT_TOKENS = int(os.environ.get('OPENAI_MAX_OUTPUT_TOKENS', '300'))
 OPENAI_TEMPERATURE = float(os.environ.get('OPENAI_TEMPERATURE', '0.6'))
@@ -177,7 +177,7 @@ LLM_PROVIDER = "openrouter"
 # OpenRouter settings
 OPENROUTER_API_KEY = "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"
 OPENROUTER_API_URL = os.environ.get('OPENROUTER_API_URL', 'https://openrouter.ai/api/v1/chat/completions')
-OPENROUTER_MODEL = os.environ.get('OPENROUTER_MODEL', 'openai/gpt-4o-mini')
+OPENROUTER_MODEL = os.environ.get('OPENROUTER_MODEL', 'openai/gpt-4.1-mini')
 OPENROUTER_SITE_URL = os.environ.get('OPENROUTER_SITE_URL', '')
 OPENROUTER_APP_NAME = os.environ.get('OPENROUTER_APP_NAME', 'NextRielt')
 OPENROUTER_MAX_TOKENS = int(os.environ.get('OPENROUTER_MAX_TOKENS', '300'))

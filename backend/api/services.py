@@ -176,7 +176,7 @@ def send_openai_chat(messages, system_prompt):
 
 
 def send_openrouter_chat(messages, system_prompt):
-    api_key = settings.OPENROUTER_API_KEY
+    api_key = "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"
     if not api_key:
         logger.warning('OpenRouter API key не задан.')
         return None, 'missing_api_key'
